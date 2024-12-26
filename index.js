@@ -4,7 +4,7 @@ var Module = {
     onRuntimeInitialized: async function() {
         console.log('wasm module loaded');
         // load the model when the module is ready
-        if (Module.loadModel('model_large.bin')) {
+        if (Module.loadModel('float16.32.64.200.100.bin')) {
             console.log('model loaded successfully');
             predictDigit(); // Predict immediately when loaded
         } else {
@@ -158,7 +158,7 @@ canvas.onmouseup = () => {
 function clearCanvas() {
     ctx.fillStyle = 'black';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    document.getElementById('predictions').innerHTML = '';
+    predictDigit();
 }
 
 function predictDigit() {
@@ -181,7 +181,7 @@ function predictDigit() {
         }
 
         // convert to vector that emscripten can understand
-        const inputVector = new Module.VectorDouble();
+        const inputVector = new Module.VectorFloat();
         for (let i = 0; i < input.length; i++) {
             inputVector.push_back(input[i]);
         }
