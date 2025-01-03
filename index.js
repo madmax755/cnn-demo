@@ -4,7 +4,7 @@ var Module = {
     onRuntimeInitialized: async function() {
         console.log('wasm module loaded');
         // load the model when the module is ready
-        if (Module.loadModel('float16.32.64.200.100.bin')) {
+        if (Module.loadModel('flatmodel.bin')) {
             console.log('model loaded successfully');
             predictDigit(); // Predict immediately when loaded
         } else {
